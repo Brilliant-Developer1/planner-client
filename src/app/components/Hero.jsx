@@ -1,9 +1,12 @@
+'use client';
 import { ArrowRight, BookText } from 'lucide-react';
 import React from 'react';
 import Button from './Button';
 import Link from 'next/link';
+import useAuth from '@/hooks/useAuth';
 
 const Hero = () => {
+  const { user } = useAuth();
   return (
     <div>
       <div
@@ -15,14 +18,22 @@ const Hero = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-white">
-          <div className="max-w-md flex flex-col gap-8">
+          <div className="max-w-md flex flex-col gap-8 items-center">
             <h1 className=" text-4xl font-bold">Welcome To Planner</h1>
             <p className="text-xl ">Let&apos;s Plan your goal</p>
-            <Link href="/dashboard">
-              <Button className="btn-secondary" icon={ArrowRight}>
-                Let&apos;s Explore
-              </Button>
-            </Link>
+            {user ? (
+              <Link href="/dashboard">
+                <Button className="btn-secondary" icon={ArrowRight}>
+                  Let&apos;s Explore
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/login">
+                <Button className="btn-secondary" icon={ArrowRight}>
+                  Let&apos;s Explore
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

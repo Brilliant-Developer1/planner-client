@@ -8,6 +8,7 @@ const SidebarContext = createContext();
 
 export default function SidebarWrapper({ children }) {
   const { user } = useAuth();
+  
   const [expanded, setExpanded] = useState(true);
   const [wasExpanded, setWasexpanded] = useState(false);
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function SidebarWrapper({ children }) {
   return (
     <aside className="h-auto sm:h-screen fixed bottom-0 sm:bottom-auto sm:sticky top-auto sm:top-0 inset-x-0 sm:inset-x-auto z-50">
       <nav className="h-auto sm:h-full flex flex-row sm:flex-col bg-white border-r shadow-sm">
-        <div className="p-4 pb-2 flex justify-between items-center">
+        <div className="hidden p-4 pb-2 md:flex justify-between items-center">
           <p></p>
           <button
             onClick={() => setExpanded(curr => !curr)}
@@ -51,9 +52,9 @@ export default function SidebarWrapper({ children }) {
           </ul>
         </SidebarContext.Provider>
 
-        <div className="sm:border-t flex p-3">
+        <div className="hidden  sm:border-t md:flex p-3">
           <img
-            src="https://ui-avatars.com/api/?background=3754DB&color=fff&bold=true"
+            src={user?.photoURL || 'https://ui-avatars.com/api/?background=7eedd5&color=024d3c&bold=true'}
             alt=""
             className="w-10 h-10 rounded-md"
           />
@@ -115,9 +116,9 @@ export function SidebarItem({ icon, text, active, alert, link, onClick }) {
             <div
               className={`
             rounded-md px-2 pt-1 sm:pt-0 py-0 sm:py-1 ml-0 sm:ml-6 sm:absolute sm:left-full sm:bg-indigo-100
-             text-emerald-800 text-sm 
+              text-sm 
              sm:invisible sm:opacity-20 sm:-translate-x-3 sm:transition-all
-             sm:group-hover:visible sm:group-hover:opacity-100 sm:group-hover:translate-x-0
+             sm:group-hover:visible sm:group-hover:opacity-100 sm:group-hover:translate-x-0 text-center 
       `}
             >
               {text}

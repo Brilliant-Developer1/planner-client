@@ -12,11 +12,11 @@ const PrivateRoute = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname()
 
-  useEffect(() => {
-    if (!loading && !user) {
-        router.replace(`/login?from=${pathname}`);
-      }
-  }, [loading, user, router,pathname]);
+  // useEffect(() => {
+  //   if (!loading && !user) {
+  //       router.replace(`/login?from=${pathname}`);
+  //     }
+  // }, [loading, user, router,pathname]);
 
   if (loading) {
     return <LoadingSpinner />;

@@ -42,7 +42,7 @@ const LoginComponent = () => {
     <>
       <Navbar />
       <div className="">
-        <div className="absolute inset-0  flex items-center justify-center">
+        <div className=" mt-5 sm:mt-36   flex items-center justify-center">
           <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
             <div className="text-center mb-6">
               <h1 className="text-4xl font-bold">Login now!</h1>
@@ -107,7 +107,7 @@ const LoginComponent = () => {
 };
 
 const Login = () => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<div className='flex justify-center '><span className="loading loading-ring loading-lg "></span></div>}>
     <LoginComponent />
   </Suspense>
 );

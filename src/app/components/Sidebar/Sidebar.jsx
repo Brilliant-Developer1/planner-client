@@ -1,27 +1,30 @@
 'use client';
+
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import SidebarWrapper, { SidebarItem } from './SidebarWrapper';
 import {
-  CirclePlus,
   ClipboardCheck,
+  Home,
   LayoutDashboard,
-  UserCircle,
 } from 'lucide-react';
 
 const Sidebar = () => {
-  const [activeItem, setActiveItem] = useState(
-    localStorage.getItem('activeItem') || '/'
-  );
+  const router = useRouter();
+  const [activeItem, setActiveItem] = useState('/dashboard'); // Default to '/dashboard'
 
-  const handleItemClick = link => {
+  const handleItemClick = (link) => {
     setActiveItem(link);
     localStorage.setItem('activeItem', link);
+    router.push(link);
   };
 
   useEffect(() => {
     const storedActiveItem = localStorage.getItem('activeItem');
     if (storedActiveItem) {
       setActiveItem(storedActiveItem);
+    } else {
+      setActiveItem('/dashboard'); // Default to '/dashboard' if no stored item
     }
   }, []);
 
@@ -42,18 +45,11 @@ const Sidebar = () => {
         link="/dashboard/management"
       />
       <SidebarItem
-        icon={<CirclePlus size={20} />}
-        text="Add Blog"
-        active={activeItem === '/dashboard/addblogs'}
-        onClick={() => handleItemClick('/dashboard/addblogs')}
-        link="/dashboard/addblogs"
-      />
-      <SidebarItem
-        icon={<UserCircle size={20} />}
-        text="User Info"
-        active={activeItem === '/dashboard/userinfo'}
-        onClick={() => handleItemClick('/dashboard/userinfo')}
-        link="/dashboard/userinfo"
+        icon={<Home size={20} />}
+        text="Home"
+        active={activeItem === '/home'}
+        onClick={() => handleItemClick('/dashboard')}
+        link="/home"
       />
     </SidebarWrapper>
   );

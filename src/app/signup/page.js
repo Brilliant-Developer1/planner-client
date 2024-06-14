@@ -2,15 +2,28 @@
 
 import { Tv2 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import GoogleLogin from '../components/GoogleLogin';
 import useAuth from '@/hooks/useAuth';
 import Button from '../components/Button';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Signup = () => {
   const [passMatch, setPassMatch] = useState(true);
-  const { createUser } = useAuth();
+  const { createUser,user } = useAuth();
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const from = searchParams.get('/') || '/';
+
+  useEffect(() => {
+    if (user) {
+      router.replace(from);
+    }
+  }, [user, from, router]);
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +73,7 @@ const Signup = () => {
     <>
       <Navbar />
       <div className="">
-        <div className="absolute inset-0  flex items-center justify-center ">
+        <div className="mt-5 sm:mt-36  flex items-center justify-center ">
           <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
             <div className="text-center mb-6">
               <h2 className="text-4xl font-bold">Create new account</h2>
