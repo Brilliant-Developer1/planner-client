@@ -1,29 +1,18 @@
-"use client"
+"use client";
 
 import { Tv2 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState, useEffect,Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import GoogleLogin from '../components/GoogleLogin';
 import useAuth from '@/hooks/useAuth';
 import Button from '../components/Button';
-import { useRouter, useSearchParams } from 'next/navigation';
+import AuthWrapper from '../components/AuthWrapper';
+ // Import the new component
 
 const SignupComponent = () => {
   const [passMatch, setPassMatch] = useState(true);
-  const { createUser,user } = useAuth();
-
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const from = searchParams.get('/') || '/';
-
-  useEffect(() => {
-    if (user) {
-      router.replace(from);
-    }
-  }, [user, from, router]);
-
-  
+  const { createUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +36,7 @@ const SignupComponent = () => {
       const userData = { name, email, password };
       const token = await firebaseUser.getIdToken();
 
-      const response = await fetch('http://localhost:3000:6173/users', {
+      const response = await fetch('http://localhost:6173/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +126,7 @@ const SignupComponent = () => {
                 </p>
               </div>
               <div className="form-control mt-6">
-              <Button type="submit" icon={Tv2}>
+                <Button type="submit" icon={Tv2}>
                   Signup
                 </Button>
               </div>
@@ -149,12 +138,14 @@ const SignupComponent = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 const Signup = () => (
   <Suspense fallback={<div className='flex justify-center '><span className="loading loading-ring loading-lg "></span></div>}>
-    <SignupComponent />
+    <AuthWrapper>
+      <SignupComponent />
+    </AuthWrapper>
   </Suspense>
 );
 
