@@ -2,14 +2,14 @@
 
 import { Tv2 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,Suspense } from 'react';
 import { Navbar } from '../components/Navbar';
 import GoogleLogin from '../components/GoogleLogin';
 import useAuth from '@/hooks/useAuth';
 import Button from '../components/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const Signup = () => {
+const SignupComponent = () => {
   const [passMatch, setPassMatch] = useState(true);
   const { createUser,user } = useAuth();
 
@@ -151,5 +151,11 @@ const Signup = () => {
     </>
   )
 }
+
+const Signup = () => (
+  <Suspense fallback={<div className='flex justify-center '><span className="loading loading-ring loading-lg "></span></div>}>
+    <SignupComponent />
+  </Suspense>
+);
 
 export default Signup;
