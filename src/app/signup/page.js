@@ -36,7 +36,7 @@ const SignupComponent = () => {
       const userData = { name, email, password };
       const token = await firebaseUser.getIdToken();
 
-      const response = await fetch('http://localhost:6173/users', {
+      const response = await fetch('https://planner-server-5943.onrender.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

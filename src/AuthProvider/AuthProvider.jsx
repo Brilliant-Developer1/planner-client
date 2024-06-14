@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const fetchJWT = async firebaseUser => {
     try {
       const token = await firebaseUser.getIdToken();
-      const response = await fetch('http://localhost:6173/auth', {
+      const response = await fetch('https://planner-server-5943.onrender.com/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -24,7 +24,7 @@ const DashboardPage = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:6173/tasks', {
+      const response = await fetch('https://planner-server-5943.onrender.com/tasks', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const DashboardPage = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:6173/tasks', {
+      const response = await fetch('https://planner-server-5943.onrender.com/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

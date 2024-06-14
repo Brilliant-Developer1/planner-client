@@ -33,7 +33,7 @@ const TaskManagement = () => {
     const fetchTasks = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:6173/tasks', {
+        const response = await fetch('https://planner-server-5943.onrender.com/tasks', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const TaskManagement = () => {
       };
   
       try {
-        const response = await fetch('http://localhost:6173/tasks', {
+        const response = await fetch('https://planner-server-5943.onrender.com/tasks', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const TaskManagement = () => {
         if (taskTitle.trim() === '') return;
       
         try {
-          const response = await fetch(`http://localhost:6173/tasks/${editTaskId}`, {
+          const response = await fetch(`https://planner-server-5943.onrender.com/tasks/${editTaskId}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ const TaskManagement = () => {
   
     const updateTaskStatus = async (taskId, status) => {
       try {
-        await fetch(`http://localhost:6173/tasks/${taskId}/status`, {
+        await fetch(`https://planner-server-5943.onrender.com/tasks/${taskId}/status`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ const TaskManagement = () => {
   
     const handleDeleteTask = async (taskId, status) => {
       try {
-        const response = await fetch(`http://localhost:6173/tasks/${taskId}`, {
+        const response = await fetch(`https://planner-server-5943.onrender.com/tasks/${taskId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
